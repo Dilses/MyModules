@@ -1,14 +1,14 @@
-(async function() {
-function getSubstringBeforeSecondDash(str) {
+(async function () {
+  function getSubstringBeforeSecondDash(str) {
     const parts = str.split('-');
     if (parts.length < 2) {
       return str;
     }
     return parts.slice(0, 2).join('-');
-}
-var localization = document.querySelectorAll('*');
-var userLanguage = getSubstringBeforeSecondDash(navigator.languages[0] || navigator.language || navigator.userLanguage).toLowerCase();
-map = {
+  }
+  var localization = document.querySelectorAll('*');
+  var userLanguage = getSubstringBeforeSecondDash(navigator.languages[0] || navigator.language || navigator.userLanguage).toLowerCase();
+  map = {
     "zh": "zh-cn",
     "en": "en-us",
     "af": "af-za",
@@ -40,42 +40,61 @@ map = {
     "zh-hk": "zh-tw",
     "zh-mo": "zh-tw",
     "zh-sg": "zh-tw"
-}
-if (userLanguage in map){
+  }
+  if (userLanguage in map) {
     userLanguage = map[userLanguage];
-}
-jsonData = '';
-jmp = true;
-for (i = 0; i < 5 && jmp; i++){
+  }
+  jsonData = '';
+  jmp = true;
+  for (i = 0; i < 5 && jmp; i++) {
     await fetch(`static/texts/${userLanguage}.json`)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(data => {
+        jsonData = data;
+        console.log(data);
+        jmp = false;
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }
+  if (jmp) {
+    for (i = 0; i < 5 && jmp; i++) {
+      await fetch(`static/texts/en-us.json`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(data => {
+          jsonData = data;
+          console.log(data);
+          jmp = false;
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
     }
-    return response.text();
-  })
-  .then(data => {
-    jsonData = data;
-    console.log(data);
-    jmp = false;
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
-}
-let obj = {};
-try {
+  }
+  let obj = {};
+  try {
     obj = JSON.parse(jsonData);
-}
-catch (e) {
+  }
+  catch (e) {
     console.log(e);
-}
-localization.forEach(function (element) {
-    if (element.innerText in obj){
-        element.innerText = obj[element.innerText];
+  }
+  localization.forEach(function (element) {
+    if (element.innerText in obj) {
+      element.innerText = obj[element.innerText];
     }
-});
-if (document.title in obj){
+  });
+  if (document.title in obj) {
     document.title = obj[document.title];
-}
+  }
 })();
