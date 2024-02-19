@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'HarmonyOS';
+    src: url('https://dilses.github.io/MyModules/fonts/HarmonyOS_Sans_SC_Bold.eot');
+    src: url('https://dilses.github.io/MyModules/fonts/HarmonyOS_Sans_SC_Bold.eot?#iefix') format('embedded-opentype'),
+        url('https://dilses.github.io/MyModules/fonts/HarmonyOS_Sans_SC_Bold.woff2') format('woff2'),
+        url('https://dilses.github.io/MyModules/fonts/HarmonyOS_Sans_SC_Bold.woff') format('woff'),
+        url('https://dilses.github.io/MyModules/fonts/HarmonyOS_Sans_SC_Bold.ttf') format('truetype'),
+        url('https://dilses.github.io/MyModules/fonts/HarmonyOS_Sans_SC_Bold.svg#HarmonyOS_Sans_SC_Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}

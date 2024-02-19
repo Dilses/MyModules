@@ -4,3 +4,7 @@
     justify-content: center;
     align-items: center;
 }
+p, h1, h2, h3, h4, h5, h6, a, span, li, ul, ol, input, button, select, textarea, i, s, del, u, em
+{
+    margin: 0;
+}

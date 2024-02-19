@@ -6,7 +6,7 @@ function getSubstringBeforeSecondDash(str) {
     }
     return parts.slice(0, 2).join('-');
 }
-var localization = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, a, u, i, em, s, del');
+var localization = document.querySelectorAll('*');
 var userLanguage = getSubstringBeforeSecondDash(navigator.languages[0] || navigator.language || navigator.userLanguage).toLowerCase();
 map = {
     "zh": "zh-cn",
