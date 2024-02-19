@@ -43,18 +43,34 @@ map = {
 if (userLanguage in map){
     userLanguage = map[userLanguage];
 }
-localization.forEach(function (element) {
-    fetch(`static/texts/${userLanguage}`)
+jsonData = '';
+jmp = true;
+for (i = 0; i < 5 && jmp; i++){
+    await fetch(`static/texts/${userLanguage}`)
   .then(response => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    return response.text(); // 或者使用 response.blob() 获取Blob对象
+    return response.text();
   })
   .then(data => {
-    console.log(data); // 在这里处理文件数据
+    jsonData = data;
+    console.log(data);
+    jmp = false;
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
   });
+}
+let obj = {};
+try {
+    obj = JSON.parse(jsonData);
+}
+catch (e) {
+    console.log(e);
+}
+localization.forEach(function (element) {
+    if (element.innerText in obj){
+        element.innerText = obj[element.innerText];
+    }
 });
