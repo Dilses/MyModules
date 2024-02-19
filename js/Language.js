@@ -1,3 +1,4 @@
+(async function() {
 function getSubstringBeforeSecondDash(str) {
     const parts = str.split('-');
     if (parts.length < 2) {
@@ -74,3 +75,4 @@ localization.forEach(function (element) {
         element.innerText = obj[element.innerText];
     }
 });
+})();
