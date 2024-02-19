@@ -46,7 +46,7 @@ if (userLanguage in map){
 jsonData = '';
 jmp = true;
 for (i = 0; i < 5 && jmp; i++){
-    await fetch(`static/texts/${userLanguage}`)
+    await fetch(`static/texts/${userLanguage}.json`)
   .then(response => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
