@@ -75,4 +75,7 @@ localization.forEach(function (element) {
         element.innerText = obj[element.innerText];
     }
 });
+if (document.title in obj){
+    document.title = obj[document.title];
+}
 })();
