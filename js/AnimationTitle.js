@@ -13,7 +13,7 @@ new Promise((resolve, reject) => {
     if ('STRING.GLOBAL.TITLE.ANIMATION.LIMIT' in window.locTex) {
         limit = window.locTex['STRING.GLOBAL.TITLE.ANIMATION.LIMIT'];
         delays = new Array(limit);
-        var delay = 200;
+        var delay = 500;
         if ('STRING.GLOBAL.TITLE.ANIMATION.DELAY' in window.locTex) {
             delay = window.locTex['STRING.GLOBAL.TITLE.ANIMATION.DELAY'];
         }
@@ -25,6 +25,7 @@ new Promise((resolve, reject) => {
                 delays[i] = delay;
             }
         }
+        console.log(`delays:${delays}`);
         animationTitle();
     }
 })
