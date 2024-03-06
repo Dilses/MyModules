@@ -1,3 +1,11 @@
+new Promise((resolve, reject) => {
+    const intervalId = setInterval(() => {
+      if (window.locTex != undefined) {
+        clearInterval(intervalId);
+        resolve();
+      }
+    }, 1000);
+  })
 if ('STRING.GLOBAL.TITLE.ANIMATION.LIMIT' in window.locTex)
 {
     var limit = window.locTex['STRING.GLOBAL.TITLE.ANIMATION.LIMIT'];
