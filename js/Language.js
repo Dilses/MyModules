@@ -128,8 +128,11 @@ function refresh() {
       element['data-localized'] = true;
     }
   });
+  refreshTitle();
+}
+
+function refreshTitle(){
   if (document.title in locTex) {
     document.title = locTex[document.title];
   }
 }
-
