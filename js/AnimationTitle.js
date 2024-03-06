@@ -32,7 +32,7 @@ new Promise((resolve, reject) => {
 function animationTitle() {
     function exec() {
         document.title = `STRING.GLOBAL.TITLE.ANIMATION.${now}`;
-        console.log(`now:${now} delay:${delays[now]}`);
+        console.log(`now:${now} delay:${delays[now]}\nraw:${document.title} parse:${document.locTex[`STRING.GLOBAL.TITLE.ANIMATION.${now}`]}`);
         refreshTitle();
         now++;
         if (now >= limit) {
