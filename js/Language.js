@@ -97,6 +97,7 @@ let locTex;
   catch (e) {
     console.log(e);
   }
+  window.locTex = locTex;
   refresh();
   const targetNode = document.body;
 
