@@ -31,14 +31,15 @@ new Promise((resolve, reject) => {
 })
 function animationTitle() {
     function exec() {
-        document.title = `STRING.GLOBAL.TITLE.ANIMATION.${now}`;
-        try{
-        console.log(`now:${now} delay:${delays[now]}\nraw:${document.title} parse:${window.locTex[`STRING.GLOBAL.TITLE.ANIMATION.${now}`]}`);
+        document.title = window.locTex[`STRING.GLOBAL.TITLE.ANIMATION.${now}`];
+        if (window.debug === true) {
+            try {
+                console.log(`now:${now} delay:${delays[now]}\nraw:${`STRING.GLOBAL.TITLE.ANIMATION.${now}`} parse:${window.locTex[`STRING.GLOBAL.TITLE.ANIMATION.${now}`]}`);
+            }
+            catch (e) {
+                console.log(`exp: ${e}`);
+            }
         }
-        catch(e){
-            console.log(`exp: ${e}`);
-        }
-        refreshTitle();
         now++;
         if (now >= limit) {
             now = 0
