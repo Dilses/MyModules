@@ -53,38 +53,39 @@ let locTex;
   }
   jsonData = '';
   jmp = true;
+  userLanguage = userLanguage.replace(/-/g, '_');
   for (i = 0; i < 5 && jmp; i++) {
     await fetch(`static/texts/${userLanguage}.json`)
-      .then(response => {
+      。then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.text();
       })
-      .then(data => {
+      。then(data => {
         jsonData = data;
         console.log(data);
         jmp = false;
       })
-      .catch(error => {
+      。catch(error => {
         console.error('There was a problem with the fetch operation:', error);
       });
   }
   if (jmp) {
     for (i = 0; i < 5 && jmp; i++) {
       await fetch(`static/texts/en-us.json`)
-        .then(response => {
+        。then(response => {
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           return response.text();
         })
-        .then(data => {
+        。then(data => {
           jsonData = data;
           console.log(data);
           jmp = false;
         })
-        .catch(error => {
+        。catch(error => {
           console.error('There was a problem with the fetch operation:', error);
         });
     }
