@@ -1,3 +1,4 @@
+let locTex;
 (async function () {
   function getSubstringBeforeSecondDash(str) {
     const parts = str.split('-');
@@ -6,7 +7,6 @@
     }
     return parts.slice(0, 2).join('-');
   }
-  var localization = document.querySelectorAll('*');
   var userLanguage;
   if (localStorage.getItem('userLanguage')) {
     userLanguage = localStorage.getItem('userLanguage');
@@ -89,19 +89,46 @@
         });
     }
   }
-  let obj = {};
+  locTex = {};
   try {
-    obj = JSON.parse(jsonData);
+    locTex = JSON.parse(jsonData);
   }
   catch (e) {
     console.log(e);
   }
+  refresh();
+  const targetNode = document.body;
+
+  // 观察器的配置（需要观察什么变动）
+  const config = { childList: true, subtree: true };
+
+  // 当观察到变动时执行的回调函数
+  const callback = function (mutationsList, observer) {
+    // Use traditional 'for loops' for IE 11
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        refresh();
+        break;
+      }
+    }
+  };
+
+  // 创建一个观察器实例并传入回调函数
+  const observer = new MutationObserver(callback);
+
+  // 以上述配置开始观察目标节点
+  observer.observe(targetNode, config);
+})();
+function refresh() {
+  let localization = document.querySelectorAll('*');
   localization.forEach(function (element) {
-    if (element.innerText in obj) {
-      element.innerText = obj[element.innerText];
+    if (element['data-localized'] != undefined && element.innerText in locTex) {
+      element.innerText = locTex[element.innerText];
+      element['data-localized'] = true;
     }
   });
-  if (document.title in obj) {
-    document.title = obj[document.title];
+  if (document.title in locTex) {
+    document.title = locTex[document.title];
   }
-})();
+}
+
