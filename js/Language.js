@@ -137,3 +137,10 @@ function refreshTitle(){
     document.title = locTex[document.title];
   }
 }
+
+function parse(s){
+  if (s in locTex) {
+    return locTex[s];
+  }
+  return s;
+}
