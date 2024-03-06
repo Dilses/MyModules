@@ -40,5 +40,5 @@ function animationTitle() {
         animationTitle();
     }
 
-    setTimeout(exec, delays[(now - 1) % limit]);
+    setTimeout(exec, delays[(now - 1 + limit) % limit]);
 }
