@@ -124,8 +124,8 @@ let locTex;
 function refresh() {
   let localization = document.querySelectorAll('*');
   localization.forEach(function (element) {
-    if (element['data-localized'] != undefined && element.innerText in locTex) {
-      element.innerText = locTex[element.innerText];
+    if (element['data-localized'] == undefined && element.innerHTML in locTex) {
+      element.innerHTML = locTex[element.innerHTML];
       element['data-localized'] = true;
     }
   });
